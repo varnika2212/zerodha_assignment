@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body>
+    <form method="POST">
+      {%csrf_token%}
+      {{form.as_p}}
+      <button type="submit" value="continue">Submit</button>
+    </form>
+  </body>
+</html>

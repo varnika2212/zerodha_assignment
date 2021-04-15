@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- // $(document).ready(function () {
+    //
+    //   //When the export report button is clicked, download what is shown in the report as
+    //   //a CSV file.  The lastValue tracking helps ensures that no row is recorded more than once.
+    //   $('#exportReportButton').on('click', function() {
+    //     var theReport = 'Field 1,Field 2,Field 3,Field 4,Field 5';
+    //     var lastValue = 0;
+    //     $('.reportTable .field1').each(function() {
+    //       if ($(this).closest('tr').find('.field1').val() != lastValue) {
+    //         var theRow = '"' + $(this).closest('tr').find('.field1').val() + '"';
+    //         theRow = theRow + ',"' + $(this).closest('tr').find('.field2').val() + '"';
+    //         theRow = theRow + ',"' + $(this).closest('tr').find('.field3').val() + '"';
+    //         theRow = theRow + ',"' + $(this).closest('tr').find('.field4').val() + '"';
+    //         theRow = theRow + ',"' + $(this).closest('tr').find('.field5').val() + '"';
+    //         theReport = theReport + '\n' + theRow;
+    //         lastValue = $(this).closest('tr').find('.field1').val();
+    //       }
+    //     });
+    //     var element = document.createElement('a');
+    //     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(theReport));
+    //     element.setAttribute('download', 'sample-report.csv');
+    //     element.style.display = 'none';
+    //     if (typeof element.download != "undefined") {
+    //       document.body.appendChild(element);
+    //       element.click();
+    //       document.body.removeChild(element);
+    //     }
+    //     else {
+    //       alert('This functionality is not supported by the current browser, recommend trying with Google Chrome instead.  (http://caniuse.com/#feat=download)');
+    //     }
+    //   });
+    //
+    // }); -->
+
+
+  <title></title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body>
+    <div class="container" align='center'>
+      <h2>Result</h2>
+      <table id='tbl'>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Date</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Close</th>
+        </tr>
+        {% for item in object %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.code }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.open }}</td>
+          <td>{{ item.high }}</td>
+          <td>{{ item.low }}</td>
+          <td>{{ item.close }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <!-- <a href="/download.html">Export Report as CSV</a> -->
+      <!-- <button type="button"> <a href='export.html'>Download CSV</a></button> -->
+      <button id='btn'>Export Report as CSV</button>
+
+    </div>
+  </body>
+<script type="text/javascript" src="{% static 'js_script.js' %}">
+
+</script>
+</html>
