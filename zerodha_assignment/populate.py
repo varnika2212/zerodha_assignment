@@ -15,14 +15,14 @@ import glob
 
 def clean_folder():
     curr=os.getcwd()
-    print("current path:",curr)
+    # print("current path:",curr)
     save_path=curr+'\\temp_csv'
-    print("temp path:",save_path)
+    # print("temp path:",save_path)
     files = os.listdir(save_path)
-    print(files)
+    # print(files)
     for f in files:
         filepath=save_path+'\\'+f
-        print("file path:",f)
+        # print("file path:",f)
         os.chmod(filepath, 0o777)
         os.remove(filepath)
 
@@ -33,7 +33,7 @@ def get_url():
     date_str=date.strftime('%d%m%y')
     end='_CSV.ZIP'
     url_link=url+date_str+end
-    print(url_link)
+    # print(url_link)
     return url_link
 
 def get_filename():
@@ -45,18 +45,18 @@ def get_filename():
 
 def download_zip(url, chunk_size=128):
     curr=os.getcwd()
-    print(curr)
+    # print(curr)
     save_path=curr+'\\file.zip'
     hd = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     r = requests.get(url, headers = hd, stream=True)
-    print(r)
+    # print(r)
     with open(save_path, 'wb') as fd:
         for chunk in r.iter_content(chunk_size=chunk_size):
             fd.write(chunk)
 
 def get_csv():
     curr=os.getcwd()
-    print(curr)
+    # print(curr)
     save_path=curr+'\\temp_csv'
     with ZipFile('file.zip', 'r') as zipObj:
         zipObj.extractall(save_path)
@@ -66,7 +66,7 @@ def get_csv():
        #     if fileName.endswith('.csv'):
        #         print(fileName)
        #         zipObj.extract(fileName)
-    print('Done!')
+    # print('Done!')
 
 def populatedb():
     file_name=get_filename()
@@ -76,10 +76,10 @@ def populatedb():
         line_count = 0
         for row in csv_reader:
             if line_count == 0:
-                print(f'Column names are {", ".join(row)}')
+                # print(f'Column names are {", ".join(row)}')
                 line_count += 1
             else:
-                print(f'\tCode:{row[0]}  \tName:{row[1]} \topen:{row[4]} \thigh:{row[5]}')
+                # print(f'\tCode:{row[0]}  \tName:{row[1]} \topen:{row[4]} \thigh:{row[5]}')
                 item=Item()
                 item.code=row[0]
                 item.name=row[1]
@@ -92,7 +92,7 @@ def populatedb():
 
 
 def populate_cache():
-    print("populated cache")
+    # print("populated cache")
     file_name=get_filename()
     path='temp_csv/'+file_name
     with open(path) as csv_file:
@@ -100,10 +100,10 @@ def populate_cache():
         line_count = 0
         for row in csv_reader:
             if line_count == 0:
-                print(f'Column names are {", ".join(row)}')
+                # print(f'Column names are {", ".join(row)}')
                 line_count += 1
             else:
-                print('populating cache')
+                # print('populating cache')
                 date=datetime.today()
                 date_str=date.strftime('%d%m%y')
                 date_s=date.strftime('%d-%m-%y')
