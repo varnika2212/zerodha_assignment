@@ -26,7 +26,7 @@ SECRET_KEY = 'gta8#2w^u_gj(2tihj=_gw5_1p#3b_4!aey#472=ou!x$lgu6&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

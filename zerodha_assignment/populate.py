@@ -119,5 +119,9 @@ def populate_cache():
                              'low': row[6],
                              'close': row[7],
                         },timeout=None)
-
-    print(cache.keys('*'))
+url=get_url()
+download_zip(url)
+clean_folder()
+get_csv()
+populatedb()
+populate_cache()
